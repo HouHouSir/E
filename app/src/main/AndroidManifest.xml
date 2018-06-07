@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="open.wow.aaron.com.eyepetizer">
+
+    <!-- 访问网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 网络状态权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 读取存储的权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- 网络状态的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:name=".OpenEyesApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AnimationActivity">
+
+        <!-- oppo齐刘海适配 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="ratio_float"/>
+        <!-- 分屏2选1 -->
+        <!-- android:resizeableActivity="true" -->
+        <!-- 主页 -->
+        <activity android:name=".framework.view.MainActivity">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN"/> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+            <!-- </intent-filter> -->
+        </activity>
+
+        <!-- 欢迎界面 -->
+        <activity android:name=".framework.view.LaunchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- <activity -->
+        <!-- android:name=".DetailActivity" -->
+        <!-- android:theme="@style/AnimationActivity"/> -->
+        <!-- <activity android:name=".CameraActivity"/> -->
+        <!-- <activity android:name=".HouViewPagerActivity"/> -->
+        <!-- <activity android:name=".BannerWebActivity"/> -->
+        <!-- <activity android:name=".cache.CacheActivity"> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name=".video.SystemVideoViewActivity" -->
+        <!-- android:screenOrientation="landscape"> -->
+        <!-- </activity> -->
+        <activity android:name=".detail.DetailActivity">
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,15 @@
+<com.youth.banner.Banner
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/banner_delicacy_choice"
+    android:layout_width="match_parent"
+    android:layout_height="240dp"
+    app:banner_layout="@layout/custom_banner"
+    app:image_scale_type="center_crop"
+    app:indicator_drawable_selected="@drawable/point_press"
+    app:indicator_height="8dp"
+    app:indicator_margin="3dp"
+    app:indicator_width="8dp"
+    app:title_textcolor="@color/color_white"
+    app:title_textsize="15sp"
+    />

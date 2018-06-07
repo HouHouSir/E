@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_item_view"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"/>
+    <!--android:background="@drawable/welcome_bg"-->
+    <!--android:background="@color/color_black"-->
+    <!--android:background="@drawable/welcome_bg"-->
+    <LinearLayout
+        android:paddingTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="[Heavy]唱给自己的么?"
+            android:textColor="@color/color_white"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginTop="10dp"
+           android:gravity="center"
+           >
+           <TextView
+               android:id="@+id/tv_item_category"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="#音乐 "
+               android:textColor="@color/color_white_grey"
+               android:textSize="14sp" />
+           <TextView
+               android:id="@+id/tv_item_duration"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text=" / 02'48"
+               android:textColor="@color/color_white_grey"
+               android:textSize="14sp" />
+       </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/color_white_translucence"
+            android:padding="3dp"
+
+            android:textColor="@color/color_white_grey"
+            android:textSize="14sp" />
+        <!--android:text="欧美广告精选"-->
+    </LinearLayout>
+
+</FrameLayout>

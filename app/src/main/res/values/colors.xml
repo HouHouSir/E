@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_black">#000000</color>
+    <color name="color_grey">#b7b6b6</color>
+    <!--白色-->
+    <color name="color_white">#ffffff</color>
+    <color name="color_detail">#E5E5E5</color>
+    <!--灰白色-->
+    <color name="color_white_grey">#e9e7e7</color>
+    <!--半透明-->
+    <color name="color_white_translucence">#33ffffff</color>
+    <!--详情页深灰色-->
+    <color name="color_detail_grey">#416774</color>
+    <!--比白色稍微差点的颜色-->
+    <color name="color_low_white">#f6f5f5</color>
+</resources>
