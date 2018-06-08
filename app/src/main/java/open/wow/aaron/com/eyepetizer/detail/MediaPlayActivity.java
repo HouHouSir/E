@@ -32,7 +32,6 @@ public class MediaPlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_media_play);
 
 
-
         //加载so文件
         try {
             IjkMediaPlayer.loadLibrariesOnce(null);

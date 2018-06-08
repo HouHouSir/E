@@ -16,4 +16,5 @@
     <color name="color_detail_grey">#416774</color>
     <!--比白色稍微差点的颜色-->
     <color name="color_low_white">#f6f5f5</color>
+    <color name="Grey_300">#E0E0E0</color>
 </resources>

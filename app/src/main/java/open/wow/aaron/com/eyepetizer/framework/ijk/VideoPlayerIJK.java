@@ -18,7 +18,6 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
 /**
  * 普通的视频播放器
- * Created by GuoShaoHong on 2017/7/25.
  */
 
 public class VideoPlayerIJK extends FrameLayout {
@@ -220,5 +219,17 @@ public class VideoPlayerIJK extends FrameLayout {
         if (mMediaPlayer != null) {
             mMediaPlayer.seekTo(l);
         }
+    }
+
+    /**
+     * 判断视频是否正在播放
+     * @return
+     */
+    public boolean isPlaying() {
+        boolean isPlaying = false;
+        if (mMediaPlayer != null) {
+            isPlaying = mMediaPlayer.isPlaying();
+        }
+        return isPlaying;
     }
 }
