@@ -37,7 +37,6 @@ dependencies {
     compile 'com.android.support:support-v4:27.0.2'
     //retrofit2网络请求
     //compile 'com.squareup.okhttp3:okhttp:3.4.1'
-
     compile 'com.android.support:support-v4:27.0.2'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
@@ -48,20 +47,24 @@ dependencies {
     //glide
     //compile 'com.github.bumptech.glide:glide:3.7.0'
     //解决v4/v7包冲突
-    compile ('com.github.bumptech.glide:glide:4.7.1'){
-            exclude group: "com.android.support"
+    compile('com.github.bumptech.glide:glide:4.7.1') {
+        exclude group: "com.android.support"
     }
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     //SmartRefreshLayout
     //1.1.0 API改动过大，老用户升级需谨慎
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-5'
-//    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5-alpha-2'
-//    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5-alpha-2'
+    //    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5-alpha-2'
+    //    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5-alpha-2'
     //没有使用特殊Header，可以不加这行
     compile 'com.android.support:appcompat-v7:27.0.2'
     //轮播图banner
     compile 'com.youth.banner:banner:1.4.10'
     //Gson
     compile 'com.google.code.gson:gson:2.8.4'
+    //ijkplayer
+//    compile project(':ijkplayer-java')
+//    compile project(':ijkplayer-exo')
+    compile project(':ijkplayer-example')
 }

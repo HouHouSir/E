@@ -62,7 +62,7 @@ public class DelicacyChoiceBean implements Parcelable {
         dest.writeInt(lastStartId);
     }
 
-    public static class ItemListBean implements Parcelable{
+    public static class ItemListBean implements Parcelable {
         private DataBean data;
         private String type;
         private String tag;
@@ -516,13 +516,14 @@ public class DelicacyChoiceBean implements Parcelable {
                 }
             }
 
-            class PlayInfoBean {
+            public class PlayInfoBean {
                 private int height;
                 private int width;
                 private String name;
                 private String type;
                 private String url;
                 private List<UrlListBean> urlList;
+
                 class UrlListBean {
                     private String name;
                     private String url;

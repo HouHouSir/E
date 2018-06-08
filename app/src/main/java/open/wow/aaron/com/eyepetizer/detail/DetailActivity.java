@@ -2,6 +2,7 @@ package open.wow.aaron.com.eyepetizer.detail;
 
 import android.app.Instrumentation;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -72,6 +73,23 @@ public class DetailActivity extends BaseActivity {
         setMessage();
         setBack();
         setDelayLoad();
+        setOnclick();
+    }
+
+    private void setOnclick() {
+        mIvDetailPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startPlayerActivity();
+            }
+        });
+    }
+
+    private void startPlayerActivity() {
+        String itemListWBean = getIntent().getStringExtra("itemListWBean");
+        Intent intent = new Intent(this,MediaPlayActivity.class);
+        intent.putExtra("itemListWBean",itemListWBean);
+        startActivity(intent);
     }
 
     /**
@@ -196,6 +214,8 @@ public class DetailActivity extends BaseActivity {
                 int replyCount = consumption.getReplyCount();
                 mTvDetailReply.setText(String.valueOf(replyCount));
             }
+
+
         } else {
             Log.e(TAG, "data==null");
         }
