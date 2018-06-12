@@ -17,6 +17,15 @@ public class OpenEyesApplication extends Application {
         super.onCreate();
 
         context = this;
+        /**
+         * 以下为OOM测试
+         */
+//       if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        LeakCanary.install(this);
     }
 
     public static Context getObjectContext() {

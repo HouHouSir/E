@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import com.youth.banner.loader.ImageLoader;
 
+import open.wow.aaron.com.eyepetizer.R;
 import open.wow.aaron.com.eyepetizer.framework.GlideApp;
 
 /**
@@ -30,6 +31,7 @@ public class GlideImageLoader extends ImageLoader {
         GlideApp.with(context)
                 .load(path)
                 //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .placeholder(R.drawable.ic_default)
                 .into(imageView);
 
         //Picasso 加载图片简单用法

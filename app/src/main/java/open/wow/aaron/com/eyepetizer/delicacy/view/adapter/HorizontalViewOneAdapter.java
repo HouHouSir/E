@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -44,17 +43,22 @@ public class HorizontalViewOneAdapter extends RecyclerView.ViewHolder {
         horizontal_recycler_view = (RecyclerView) itemView.findViewById(R.id.horizontal_recycler_view);
     }
 
-    public void setData(List<DelicacyChoiceBean.ItemListBean> itemListWBeen, Context context, int position) {
+    public void setData(List<DelicacyChoiceBean.ItemListBean> itemListWBeen, Context context, int position, RecyclerView.RecycledViewPool pool) {
         this.context = context;
 
         //DelicacyChoiceBean.ItemListBean itemListBean = itemListWBeen.get(position);
         DelicacyChoiceBean.ItemListBean itemListBean = itemListWBeen.get(position);
 
         //RecyclerView设置layout
-        horizontal_recycler_view.setLayoutManager(
-                new LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false));
+        LinearLayoutManager layout = new LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(layout);
         //RecyclerView设置adapter
         horizontal_recycler_view.setAdapter(new HorizontalViewHolderOneAdapter(itemListBean));
+        //设置RecyclerViewPool
+        //layout.setRecycleChildrenOnDetach(true);
+//        if (pool != null) {
+//            horizontal_recycler_view.setRecycledViewPool(pool);
+//        }
 
         //Log.e(TAG, "itemListBean" + itemListBean.toString());
         //标题URL地址
@@ -146,7 +150,8 @@ public class HorizontalViewOneAdapter extends RecyclerView.ViewHolder {
                     //缓存图片,详情中从缓存中读取
                     GlideApp.with(context)
                             .load(detailUrl)
-                            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                            .placeholder(R.drawable.ic_default)
+                            //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                             .into(holder.iv_horizontal_item_view);
 
                     //启动DetailActivity携带的图片URL地址
@@ -178,12 +183,16 @@ public class HorizontalViewOneAdapter extends RecyclerView.ViewHolder {
                 public void onClick(View v) {
 
                     // 这里指定了共享的视图元素
+                    if (android.os.Build.VERSION.SDK_INT > 20) {
+                        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                (Activity) context, v,
+                                context.getString(R.string.share_animation)
+                        );
+                        context.startActivity(intent, optionsCompat.toBundle());
+                    }else {
+                        context.startActivity(intent);
+                    }
 
-                    ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            (Activity) context, v,
-                            context.getString(R.string.share_animation)
-                    );
-                    context.startActivity(intent, optionsCompat.toBundle());
 
 
                     //context.startActivity(intent);

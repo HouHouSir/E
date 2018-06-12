@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +61,7 @@ public class DetailActivity extends BaseActivity {
     private LinearLayout mLlDetailDownLoad;
     private TextView mTvDetailDownLoad;
     private ImageView mIvDetailPlay;
+    private Animation animation;
     private Subscription subscribe;
 
 
@@ -87,8 +89,8 @@ public class DetailActivity extends BaseActivity {
 
     private void startPlayerActivity() {
         String itemListWBean = getIntent().getStringExtra("itemListWBean");
-        Intent intent = new Intent(this,MediaPlayActivity.class);
-        intent.putExtra("itemListWBean",itemListWBean);
+        Intent intent = new Intent(this, MediaPlayActivity.class);
+        intent.putExtra("itemListWBean", itemListWBean);
         startActivity(intent);
     }
 
@@ -104,6 +106,12 @@ public class DetailActivity extends BaseActivity {
                         mIvDetailBack.setVisibility(View.VISIBLE);
                         mIvDetailPlay.setVisibility(View.VISIBLE);
                         mIvDetailUp.setVisibility(View.VISIBLE);
+
+                        //开启放大动画
+//                        animation = AnimationUtils.loadAnimation(DetailActivity.this,
+//                                R.anim.enlargement_animator);
+//                        mIvDetailTitle.startAnimation(animation);
+//                        animation.setFillAfter(true);
                     }
                 });
     }
@@ -251,7 +259,7 @@ public class DetailActivity extends BaseActivity {
 //                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
 //                .override(windWidth, DensityUtils.dip2px(DetailActivity.this, 380))
                 .override(windWidth, height / 2 + DensityUtils.dip2px(DetailActivity.this, 30))
-                .centerCrop()
+//                .centerCrop()
                 .into(mIvDetailTitle);
     }
 
@@ -281,11 +289,26 @@ public class DetailActivity extends BaseActivity {
         mTvDetailReply = (TextView) findViewById(R.id.tv_detail_reply);
         mLlDetailDownLoad = (LinearLayout) findViewById(R.id.ll_detail_down_load);
         mTvDetailDownLoad = (TextView) findViewById(R.id.tv_detail_down_load);
+
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (animation != null) {
+            mIvDetailTitle.clearAnimation();
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (animation != null) {
+            mIvDetailTitle.clearAnimation();
+            animation = null;
+        }
+
         Glide.get(this).clearMemory();
         subscribe.unsubscribe();
     }

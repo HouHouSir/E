@@ -41,16 +41,21 @@ public class HorizontalViewTowAdapter extends RecyclerView.ViewHolder {
         horizontal_recycler_view_tow = (RecyclerView) itemView.findViewById(R.id.horizontal_recycler_view_tow);
     }
 
-    public void setData(List<DelicacyChoiceBean.ItemListBean> itemListWBeen, Context context, int position) {
+    public void setData(List<DelicacyChoiceBean.ItemListBean> itemListWBeen, Context context, int position, RecyclerView.RecycledViewPool pool) {
         this.context = context;
 
         DelicacyChoiceBean.ItemListBean itemListWBean = itemListWBeen.get(position);
 
         Log.e("TAG", "position: " + position);
-
+        LinearLayoutManager layout = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view_tow.setAdapter(new HorizontalTowAdapter(itemListWBean));
-        horizontal_recycler_view_tow.setLayoutManager(
-                new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        horizontal_recycler_view_tow.setLayoutManager(layout);
+
+        //设置RecyclerViewPool
+        layout.setRecycleChildrenOnDetach(true);
+        if (pool != null) {
+            horizontal_recycler_view_tow.setRecycledViewPool(pool);
+        }
     }
 
     private class HorizontalTowAdapter extends RecyclerView.Adapter<ViewHolder> {

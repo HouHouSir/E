@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
@@ -28,6 +29,8 @@ import open.wow.aaron.com.eyepetizer.framework.base.BaseFragment;
  * 作者：哇牛Aaron
  * 时间: 2017/7/20
  * 功能描述: 精选
+ *
+ * 运用RecyclerViewPool解决卡顿问题
  */
 
 public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
@@ -82,7 +85,7 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         mP.getDataFromNet();
-        Log.e(TAG,"onFragmentFirstVisible()");
+        Log.e(TAG, "onFragmentFirstVisible()");
     }
 
     @Override
@@ -122,6 +125,7 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
         } else {
             allRecyclerAdapter.notifyDataSetChanged();
             itemListBeen.addAll(delicacyChoiceBean.getItemList());
+
             mBean = delicacyChoiceBean;
         }
         refreshLayout.finishLoadMore();
@@ -147,11 +151,19 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
             //String nextPageUrl = delicacyChoiceBean.getNextPageUrl();
             //Log.e(TAG,"nextPageUrl: " + nextPageUrl);
             itemListBeen = delicacyChoiceBean.getItemList();
-            allRecyclerAdapter = new AllRecyclerAdapter(itemListBeen, getContext());
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+            recyclerView.setLayoutManager(linearLayoutManager);
+            //如果LayoutManager是LinearLayoutManager GridLayoutManager，则需要setRecycleChildrenOnDetach(true)
+            linearLayoutManager.setRecycleChildrenOnDetach(true);
+            RecyclerView.RecycledViewPool pool  = recyclerView.getRecycledViewPool();
+
+            allRecyclerAdapter = new AllRecyclerAdapter(itemListBeen, getContext(),pool);
+
+
+
+
             recyclerView.setAdapter(allRecyclerAdapter);
             //allRecyclerAdapter.setHasStableIds(true);//去除默认动画
-
             //recyclerView添加头
             allRecyclerAdapter.setHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.view_banner, null, false));
             mBean = delicacyChoiceBean;
@@ -162,9 +174,12 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
      * 加载更多数据的网络请求
      */
     private void refreshLoadMore() {
+        if (mBean == null) {
+            return;
+        }
         //Log.e(TAG,"mBean.getNextPageUrl()= " + mBean.getNextPageUrl());
         if (mBean.getNextPageUrl() == null) {
-            Log.e(TAG,"mBean.getNextPageUrl()= 空");
+            Log.e(TAG, "mBean.getNextPageUrl()= 空");
             //refreshLayout.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
             ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.footer_finish_no_more);//"没有更多数据";
             refreshLayout.finishLoadMore();
@@ -200,4 +215,10 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
      * ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.footer_finish);//"加载完成";
      *
      */
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Glide.get(getActivity()).clearMemory();
+    }
 }

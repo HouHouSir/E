@@ -4,6 +4,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:transitionName="@string/share_animation"
         android:id="@+id/iv_item_view"
         android:layout_width="match_parent"
         android:layout_height="230dp"/>

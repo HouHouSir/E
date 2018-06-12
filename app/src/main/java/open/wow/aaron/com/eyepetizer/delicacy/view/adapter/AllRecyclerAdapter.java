@@ -19,6 +19,8 @@ import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
  */
 
 public class AllRecyclerAdapter extends RecyclerView.Adapter {
+    private static final String TAG = AllRecyclerAdapter.class.getSimpleName();
+    private RecyclerView.RecycledViewPool mPool;
     private List<DelicacyChoiceBean.ItemListBean> mItemList;
     private Context mContext;
 
@@ -28,8 +30,6 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
     private final int VERTICAL_VIEW = 3;//纵向
     private final int TITLE = 4;//单个纵向
     private final int REPEAT_BANNER = 5;//重复的banner
-
-
 
     private View mHeaderView;
 
@@ -50,9 +50,10 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
         return mHeaderView;
     }
 
-    public AllRecyclerAdapter(List<DelicacyChoiceBean.ItemListBean> itemList, Context context) {
+    public AllRecyclerAdapter(List<DelicacyChoiceBean.ItemListBean> itemList, Context context, RecyclerView.RecycledViewPool pool) {
         mItemList = itemList;
         mContext = context;
+        mPool = pool;
     }
 
     @Override
@@ -91,9 +92,10 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         if (holder instanceof HorizontalViewOneAdapter) {
             //String type = itemList.get(position).getType();
-            ((HorizontalViewOneAdapter) holder).setData(mItemList, mContext, position);
+            ((HorizontalViewOneAdapter) holder).setData(mItemList, mContext, position, mPool);
         }
 
         if (holder instanceof VerticalViewHolderAdapter) {
@@ -104,16 +106,16 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
             }
         }
 
-        if (holder instanceof HorizontalViewTowAdapter) {
-            ((HorizontalViewTowAdapter) holder).setData(mItemList, mContext, position);
-        }
+//        if (holder instanceof HorizontalViewTowAdapter) {
+//            ((HorizontalViewTowAdapter) holder).setData(mItemList, mContext, position);
+//        }
 
         if (holder instanceof TitleViewHolderAdapter) {
             ((TitleViewHolderAdapter) holder).setData(mItemList, mContext, position);
         }
 
         if (holder instanceof BannerAdapter) {
-            if (position==0){
+            if (position == 0) {
                 ((BannerAdapter) holder).setData(mItemList, mContext, position);
             }
         }
@@ -128,10 +130,9 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
 //        return super.getItemViewType(position);
+        //Log.e("TAG", "type == " + type + " tag == " + tag + " position == " + position);
         String type = mItemList.get(position).getType();
         String tag = mItemList.get(position).getTag();
-        //Log.e("TAG", "type == " + type + " tag == " + tag + " position == " + position);
-
 //        if (position == 0) {
 //            return TYPE_HEADER;
 //        }
@@ -164,9 +165,9 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
         }
 
         //横向Tow
-        if ("videoCollectionOfFollow".equals(type)) {
-            return HORIZONTAL_VIEW_TOW;
-        }
+//        if ("videoCollectionOfFollow".equals(type)) {
+//            return HORIZONTAL_VIEW_TOW;
+//        }
 
         //广告
 //        if (type.contains("banner")) {

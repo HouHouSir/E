@@ -16,7 +16,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-
+        android:configChanges="orientation|keyboardHidden|screenSize"
         android:name=".OpenEyesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,8 +31,10 @@
             android:value="ratio_float"/>
         <!-- 分屏2选1 -->
         <!-- android:resizeableActivity="true" -->
-        <!-- 主页 -->
-        <activity android:name=".framework.view.MainActivity">
+        <!-- 主页  启动硬件加速android:hardwareAccelerated="true"-->
+        <activity android:name=".framework.view.MainActivity"
+                  android:screenOrientation="portrait"
+            >
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN"/> -->
@@ -43,7 +45,9 @@
         </activity>
 
         <!-- 欢迎界面 -->
-        <activity android:name=".framework.view.LaunchActivity">
+        <activity android:name=".framework.view.LaunchActivity"
+                  android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -62,8 +66,11 @@
         <!-- android:name=".video.SystemVideoViewActivity" -->
         <!-- android:screenOrientation="landscape"> -->
         <!-- </activity> -->
-        <activity android:name=".detail.DetailActivity">
+        <activity android:name=".detail.DetailActivity"
+                  android:screenOrientation="portrait"
+            >
         </activity>
+        <!--视频播放-->
         <activity
             android:name=".detail.MediaPlayActivity"
             android:configChanges="orientation|keyboardHidden"
