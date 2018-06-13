@@ -9,7 +9,7 @@ package open.wow.aaron.com.eyepetizer.framework.retrofit;
 
 public class ConstantURLs {
     //基础url
-    public static final String BASE_URL = "http://baobab.kaiyanapp.com/api/v4/tabs/";
+    public static final String BASE_URL = "http://baobab.kaiyanapp.com/api/v4/";
     //精选下一页URL
     public String NEXT_DELICACY_URL = "http://baobab.kaiyanapp.com/api/v4/tabs/selected?date=1510707600000&num=1&page=1";
 }

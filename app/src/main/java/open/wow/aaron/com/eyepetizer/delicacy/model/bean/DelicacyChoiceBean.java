@@ -1,4 +1,4 @@
-package open.wow.aaron.com.eyepetizer.delicacy.bean;
+package open.wow.aaron.com.eyepetizer.delicacy.model.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;

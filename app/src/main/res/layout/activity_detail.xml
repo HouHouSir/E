@@ -209,17 +209,18 @@
             android:background="@color/color_white_translucence"
             />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
+            android:orientation="vertical"
             >
 
             <ScrollView
                 android:id="@+id/scrollView_detail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 >
 
                 <open.wow.aaron.com.eyepetizer.framework.ui.FadeInTextView
@@ -345,7 +346,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

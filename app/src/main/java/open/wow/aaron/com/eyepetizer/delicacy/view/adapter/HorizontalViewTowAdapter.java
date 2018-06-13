@@ -21,7 +21,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import open.wow.aaron.com.eyepetizer.R;
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.detail.DetailActivity;
 import open.wow.aaron.com.eyepetizer.framework.GlideApp;
 import open.wow.aaron.com.eyepetizer.framework.utils.TimeUtils;

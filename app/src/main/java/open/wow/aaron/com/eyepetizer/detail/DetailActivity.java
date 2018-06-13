@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,7 +21,7 @@ import com.google.gson.Gson;
 import java.util.concurrent.TimeUnit;
 
 import open.wow.aaron.com.eyepetizer.R;
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.framework.GlideApp;
 import open.wow.aaron.com.eyepetizer.framework.base.BaseActivity;
 import open.wow.aaron.com.eyepetizer.framework.ui.FadeInTextView;
@@ -108,10 +109,10 @@ public class DetailActivity extends BaseActivity {
                         mIvDetailUp.setVisibility(View.VISIBLE);
 
                         //开启放大动画
-//                        animation = AnimationUtils.loadAnimation(DetailActivity.this,
-//                                R.anim.enlargement_animator);
-//                        mIvDetailTitle.startAnimation(animation);
-//                        animation.setFillAfter(true);
+                        animation = AnimationUtils.loadAnimation(DetailActivity.this,
+                                R.anim.enlargement_animator);
+                        mIvDetailTitle.startAnimation(animation);
+                        animation.setFillAfter(true);
                     }
                 });
     }

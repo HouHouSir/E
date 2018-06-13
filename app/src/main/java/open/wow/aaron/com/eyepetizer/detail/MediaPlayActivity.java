@@ -17,7 +17,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import open.wow.aaron.com.eyepetizer.R;
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.framework.ijk.VideoPlayerIJK;
 import open.wow.aaron.com.eyepetizer.framework.ijk.VideoPlayerListener;
 import tv.danmaku.ijk.media.player.IMediaPlayer;

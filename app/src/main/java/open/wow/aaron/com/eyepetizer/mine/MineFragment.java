@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import open.wow.aaron.com.eyepetizer.R;
+import open.wow.aaron.com.eyepetizer.framework.base.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MineFragment extends Fragment {
+public class MineFragment extends BaseFragment {
 
 
     public MineFragment() {
@@ -27,4 +28,9 @@ public class MineFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_mine, container, false);
     }
 
+    @Override
+    protected void onFragmentFirstVisible() {
+        super.onFragmentFirstVisible();
+
+    }
 }

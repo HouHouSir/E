@@ -20,7 +20,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.List;
 
 import open.wow.aaron.com.eyepetizer.R;
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.delicacy.presenter.DelicacyP;
 import open.wow.aaron.com.eyepetizer.delicacy.view.adapter.AllRecyclerAdapter;
 import open.wow.aaron.com.eyepetizer.framework.base.BaseFragment;

@@ -1,6 +1,6 @@
 package open.wow.aaron.com.eyepetizer.delicacy.presenter;
 
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.delicacy.model.DelicacyM;
 import open.wow.aaron.com.eyepetizer.delicacy.model.IDelicacyM;
 import open.wow.aaron.com.eyepetizer.delicacy.view.IDelicacyV;

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import open.wow.aaron.com.eyepetizer.R;
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 
 /**
  * 作者：哇牛Aaron

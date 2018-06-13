@@ -1,10 +1,13 @@
 package open.wow.aaron.com.eyepetizer.framework.retrofit;
 
 
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
-import open.wow.aaron.com.eyepetizer.found.bean.FoundOutBean;
+import java.util.ArrayList;
+
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.found.model.bean.FoundBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import rx.Observable;
 
@@ -22,7 +25,7 @@ public interface ApiStores {
      * 精选
      * @return
      */
-    @POST("selected")
+    @POST("tabs/selected")
     Observable<DelicacyChoiceBean> getDelicacyChoice();
 
 
@@ -41,13 +44,15 @@ public interface ApiStores {
      * @return
      */
     @FormUrlEncoded
-    @POST("selected?")
+    @POST("tabs/selected?")
     Observable<DelicacyChoiceBean> getDelicacyChoiceLoadMore(@Field("date") String date,
                                                              @Field("num") String num,
                                                              @Field("page") String page);
 
     /**
      * 发现
+     * http://baobab.kaiyanapp.com/api/v4/categories
      */
-    Observable<FoundOutBean> getFound();
+    @GET("categories")
+    Observable<ArrayList<FoundBean>> getFound();
 }

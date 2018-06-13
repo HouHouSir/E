@@ -3,7 +3,7 @@ package open.wow.aaron.com.eyepetizer.framework.utils;
 import android.support.v4.util.LruCache;
 import android.text.TextUtils;
 
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 
 
 /**

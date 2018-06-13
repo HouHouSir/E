@@ -1,6 +1,6 @@
 package open.wow.aaron.com.eyepetizer.delicacy.model;
 
-import open.wow.aaron.com.eyepetizer.delicacy.bean.DelicacyChoiceBean;
+import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.framework.retrofit.ApiClient;
 import rx.Subscriber;
 import rx.Subscription;
