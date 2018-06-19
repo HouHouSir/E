@@ -9,6 +9,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -50,9 +51,34 @@ public interface ApiStores {
                                                              @Field("page") String page);
 
     /**
-     * 发现
+     * 发现/分类
      * http://baobab.kaiyanapp.com/api/v4/categories
      */
     @GET("categories")
     Observable<ArrayList<FoundBean>> getFound();
+
+    /**
+     * 发现/分类详情
+     * -->创意id=2
+     * -->开胃id=4
+     * -->旅行id=6
+     * -->影视id=8
+     * -->动画id=10
+     * -->剧情id=12
+     * -->广告id=14
+     * -->运动id=18
+     * -->音乐id=20
+     * -->记录id=22
+     * -->时尚id=24
+     * -->萌宠id=26
+     * -->搞笑id=28
+     * -->游戏id=30
+     * -->科技id=32
+     * -->集锦id=34
+     * -->生活id=36
+     * -->综艺id=38
+     * http://baobab.kaiyanapp.com/api/v4/categories/videoList?id=2
+     */
+    @GET("categories/videoList?")
+    Observable<DelicacyChoiceBean> getFoundDetail(@Query("id") String id);
 }

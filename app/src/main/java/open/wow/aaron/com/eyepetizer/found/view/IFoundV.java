@@ -27,4 +27,9 @@ public interface IFoundV {
      * @param arrayList
      */
     void disposeDataFromNet(ArrayList<FoundBean> arrayList);
+
+//    /**
+//     * 处理点击事件
+//     */
+//    void disposeOnClick();
 }

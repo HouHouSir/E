@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_black">#000000</color>
     <color name="color_grey">#b7b6b6</color>
+    <color name="color_charcoal_grey">#a2a0a0</color>
     <!--白色-->
     <color name="color_white">#ffffff</color>
     <color name="color_detail">#E5E5E5</color>

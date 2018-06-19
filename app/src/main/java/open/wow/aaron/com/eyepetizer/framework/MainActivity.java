@@ -18,7 +18,7 @@ import java.util.List;
 import open.wow.aaron.com.eyepetizer.R;
 import open.wow.aaron.com.eyepetizer.author.AuthorFragment;
 import open.wow.aaron.com.eyepetizer.delicacy.view.DelicacyChoiceFragment;
-import open.wow.aaron.com.eyepetizer.found.FoundFragment;
+import open.wow.aaron.com.eyepetizer.found.view.FoundFragment;
 import open.wow.aaron.com.eyepetizer.framework.utils.NetUtils;
 import open.wow.aaron.com.eyepetizer.mine.MineFragment;
 

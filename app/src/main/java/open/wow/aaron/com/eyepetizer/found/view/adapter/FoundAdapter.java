@@ -30,20 +30,33 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.ViewHolder> 
         mList = arrayList;
     }
 
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_found, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         //图片
         GlideApp.with(mContext)
                 .load(mList.get(position).getBgPicture())
                 .placeholder(R.drawable.ic_default)
                 .into(holder.mIvFoundItem);
         //名称
-        holder.mTvFoundType.setText("#"+mList.get(position).getName());
+        holder.mTvFoundType.setText("#" + mList.get(position).getName());
+
+        if (mOnItemClickListener!=null){
+            //图片点击事件
+            holder.mIvFoundItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onItemClick(holder.mIvFoundItem, position);
+                    //Toast.makeText(mContext, position + "", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
     }
 
     @Override
@@ -51,14 +64,28 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.ViewHolder> 
         return mList == null ? 0 : mList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mIvFoundItem;
-        private TextView mTvFoundType;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView mIvFoundItem;
+        TextView mTvFoundType;
 
         ViewHolder(View itemView) {
             super(itemView);
             mIvFoundItem = itemView.findViewById(R.id.iv_found_item);
-            mTvFoundType =  itemView.findViewById(R.id.tv_found_type);
+            mTvFoundType = itemView.findViewById(R.id.tv_found_type);
         }
     }
+
+    /**
+     * Item点击事件
+     */
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
+    }
+
 }

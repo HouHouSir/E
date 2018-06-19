@@ -25,4 +25,9 @@
         <item name="tabIndicatorHeight">@dimen/six_dp</item>
     </style>
 
+    <!--折叠标题文字展开大小-->
+    <style name="expandedToolbarTitle">
+        <item name="android:textSize">21sp</item>
+    </style>
+
 </resources>

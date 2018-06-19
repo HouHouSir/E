@@ -47,10 +47,10 @@ public class DetailActivity extends BaseActivity {
     private TextView mTvDetailCategory;
     private TextView mTvDetailDuration;
     private ImageView mIvDetailUp;
-    private ImageView mIvDetailHomepage;
-    private TextView mTvDetailAuthorName;
-    private TextView mTvDetailAuthorDescription;
-    private TextView mTvDetailVideoNum;
+    private ImageView mIvDetailHomepage;//头像图片
+    private TextView mTvDetailAuthorName;//作者名称
+    private TextView mTvDetailAuthorDescription;//作品描述
+    private TextView mTvDetailVideoNum;//作品条数
     private ImageView mIvDetailRight;
     private FadeInTextView mTvDetailDescription;
     private LinearLayout mLlDetailCollection;
