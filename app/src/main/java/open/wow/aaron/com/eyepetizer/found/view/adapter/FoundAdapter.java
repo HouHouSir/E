@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 import open.wow.aaron.com.eyepetizer.R;
@@ -41,7 +43,9 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.ViewHolder> 
         //图片
         GlideApp.with(mContext)
                 .load(mList.get(position).getBgPicture())
-                .placeholder(R.drawable.ic_default)
+                //.placeholder(R.drawable.ic_default)
+                //.skipMemoryCache(true)
+                .diskCacheStrategy( DiskCacheStrategy.NONE)
                 .into(holder.mIvFoundItem);
         //名称
         holder.mTvFoundType.setText("#" + mList.get(position).getName());

@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import open.wow.aaron.com.eyepetizer.R;
@@ -29,7 +28,7 @@ public class FoundDetailActivity extends BaseActivity implements IFoundDetailV {
     private SmartRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
     private CollapsingToolbarLayout mCollapsingToolbarLayout;
-    private Toolbar mToolbar;
+    //private Toolbar mToolbar;
     private TextView mTvFoundDetailDescription;
     private ImageView mIvFoundDetailTitle;
     private String id = "";
@@ -47,13 +46,13 @@ public class FoundDetailActivity extends BaseActivity implements IFoundDetailV {
      * 初始化点击事件
      */
     private void initOnClick() {
-        mToolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_left_black));
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        mToolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.ic_left_black));
+//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
     }
 
 
@@ -78,6 +77,7 @@ public class FoundDetailActivity extends BaseActivity implements IFoundDetailV {
         getDataFromNet();
         setCollapsingToolbarLayout();
         mRefreshLayout.setEnableRefresh(false);//是否启用下拉刷新功能
+        mRefreshLayout.setEnableAutoLoadMore(true);//是否启用列表惯性滑动到底部时自动加载更多
     }
 
     /**
@@ -96,14 +96,17 @@ public class FoundDetailActivity extends BaseActivity implements IFoundDetailV {
         mCollapsingToolbarLayout.setCollapsedTitleTextColor(Color.BLACK);
         //设置展开的时候标题显示字体颜色
         mCollapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
-
+        //设置设置状态栏颜色
+        mCollapsingToolbarLayout.setStatusBarScrimColor(Color.GRAY);
         //3设置描述
         mTvFoundDetailDescription.setText(description);
 
         //4.设置图片
         GlideApp.with(this)
                 .load(headerImage)
-                .placeholder(R.drawable.ic_default)
+                //.placeholder(R.drawable.ic_default)
+                .skipMemoryCache(true)
+                .diskCacheStrategy( DiskCacheStrategy.NONE)
                 .into(mIvFoundDetailTitle);
     }
 
@@ -188,7 +191,7 @@ public class FoundDetailActivity extends BaseActivity implements IFoundDetailV {
         mRefreshLayout = findViewById(R.id.refreshLayout_found_detail);
         mIvFoundDetailTitle =  findViewById(R.id.iv_found_detail_title);
         mTvFoundDetailDescription =  findViewById(R.id.tv_found_detail_description);
-        mToolbar =  findViewById(R.id.toolbar_found_detail);
+        //mToolbar =  findViewById(R.id.toolbar_found_detail);
 
     }
 }

@@ -87,6 +87,9 @@ public abstract class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         initVariable();
+
+//        RefWatcher refWatcher = OpenEyesApplication.getRefWatcher(getActivity());
+//        refWatcher.watch(this);
     }
 
     private void initVariable() {

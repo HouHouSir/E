@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -25,7 +26,7 @@ import open.wow.aaron.com.eyepetizer.framework.utils.TimeUtils;
 /**
  * 作者：哇牛Aaron
  * 时间: 2018/5/15
- * 功能描述:
+ * 功能描述:已弃用
  */
 
 public class VerticalViewHolderAdapter extends RecyclerView.ViewHolder {
@@ -151,8 +152,10 @@ public class VerticalViewHolderAdapter extends RecyclerView.ViewHolder {
         if (imageUrl != null) {
             GlideApp.with(context)
                     .load(imageUrl)
-                    .placeholder(R.drawable.ic_default)
+                    //.placeholder(R.drawable.ic_default)
                     //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy( DiskCacheStrategy.NONE)
                     .into(iv_item_view);
 
             //启动DetailActivity携带的图片URL地址

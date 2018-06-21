@@ -2,7 +2,7 @@ package open.wow.aaron.com.eyepetizer.framework.view.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
  * 即调用了 onDestroyView 和 onDestroy 方法，仅仅保存 Fragment 状态。
  * 相比而言， FragmentStatePagerAdapter 内存占用较小，所以适合大量动态页面，比如我们常见的新闻列表类应用。
  */
-public class OpenEyesViewPagerAdapter extends FragmentPagerAdapter {
+public class OpenEyesViewPagerAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> mFragmentList;
 
     public OpenEyesViewPagerAdapter(FragmentManager supportFragmentManager, List<Fragment> fragmentList) {

@@ -100,4 +100,13 @@ public class FoundFragment extends BaseFragment implements IFoundV {
         intent.putExtra("name",arrayList.get(position).getName());
         startActivity(intent);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+//        RefWatcher refWatcher = OpenEyesApplication.getRefWatcher(getActivity());
+//        refWatcher.watch(this);
+
+    }
 }

@@ -255,7 +255,7 @@ public class DetailActivity extends BaseActivity {
         //仅从缓存中读取
         GlideApp.with(DetailActivity.this)
                 .load(imageUrl)
-                .onlyRetrieveFromCache(true)
+//                .onlyRetrieveFromCache(true)
                 .dontTransform()
 //                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
 //                .override(windWidth, DensityUtils.dip2px(DetailActivity.this, 380))

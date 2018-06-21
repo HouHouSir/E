@@ -62,25 +62,25 @@ public class BaseActivity extends AppCompatActivity {
 
     }
 
-    private void setLightStatusBarIcon(){
-        //对Android版本是6.0及以后的OPPO机型
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        }
-        //对Android5.1版本并且是ColorOS3.0的OPPO机型
-        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1){
-            final int SYSTEM_UI_FLAG_OP_STATUS_BAR_TINT = 0x00000010;
-
-            Window window = getWindow();
-
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-            window.getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_OP_STATUS_BAR_TINT);
-
-        }
-    }
+//    private void setLightStatusBarIcon(){
+//        //对Android版本是6.0及以后的OPPO机型
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+//            Window window = getWindow();
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//        }
+//        //对Android5.1版本并且是ColorOS3.0的OPPO机型
+//        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1){
+//            final int SYSTEM_UI_FLAG_OP_STATUS_BAR_TINT = 0x00000010;
+//
+//            Window window = getWindow();
+//
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+//
+//            window.getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_OP_STATUS_BAR_TINT);
+//
+//        }
+//    }
 
     /**
      * 为方便开发者对于OPPO机型的反色适配，提供了用于设置状态栏显示效果的接口方法，开发者可以根据应用需要动态设置状态栏图标为白色或是黑色。

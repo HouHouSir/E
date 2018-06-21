@@ -29,10 +29,11 @@ import open.wow.aaron.com.eyepetizer.framework.utils.TimeUtils;
 /**
  * 作者：哇牛Aaron
  * 时间: 2018/5/15
- * 功能描述:
+ * 功能描述:已弃用
  */
 
 public class HorizontalViewTowAdapter extends RecyclerView.ViewHolder {
+    private static final String TAG = HorizontalViewTowAdapter.class.getSimpleName();
     private Context context;
     private RecyclerView horizontal_recycler_view_tow;
 
@@ -41,7 +42,7 @@ public class HorizontalViewTowAdapter extends RecyclerView.ViewHolder {
         horizontal_recycler_view_tow = (RecyclerView) itemView.findViewById(R.id.horizontal_recycler_view_tow);
     }
 
-    public void setData(List<DelicacyChoiceBean.ItemListBean> itemListWBeen, Context context, int position, RecyclerView.RecycledViewPool pool) {
+    public void setData(List<DelicacyChoiceBean.ItemListBean> itemListWBeen, Context context, int position) {
         this.context = context;
 
         DelicacyChoiceBean.ItemListBean itemListWBean = itemListWBeen.get(position);
@@ -52,10 +53,10 @@ public class HorizontalViewTowAdapter extends RecyclerView.ViewHolder {
         horizontal_recycler_view_tow.setLayoutManager(layout);
 
         //设置RecyclerViewPool
-        layout.setRecycleChildrenOnDetach(true);
-        if (pool != null) {
-            horizontal_recycler_view_tow.setRecycledViewPool(pool);
-        }
+//        layout.setRecycleChildrenOnDetach(true);
+//        if (pool != null) {
+//            horizontal_recycler_view_tow.setRecycledViewPool(pool);
+//        }
     }
 
     private class HorizontalTowAdapter extends RecyclerView.Adapter<ViewHolder> {
@@ -80,16 +81,27 @@ public class HorizontalViewTowAdapter extends RecyclerView.ViewHolder {
             intent.putExtra("itemListWBean", new Gson().toJson(itemListBean));
 
             if (itemListBean != null) {
+                //1.根据分类处理,这里因为第二页横向RecycleView,类型为squareCardCollection,跟其它不一样,需单独处理
+//                String type = itemListBean.getType();
+//                if (type != null && "squareCardCollection".equals(type)) {
+//
+//                    return;
+//                }
+                //2.这里处理 videoCollectionOfFollow 类型
                 //DelicacyChoiceBean.ItemListBean.DataBean data = itemListBean.getData();
                 DelicacyChoiceBean.ItemListBean.DataBean data = itemListBean.getData();
+
+                Log.e(TAG, "itemListBean= " + itemListBean.toString());
+                DelicacyChoiceBean.ItemListBean.DataBean.CoverBean cover = data.getCover();
+                if (cover == null) return;
                 //图片
-                String detailUrl = data.getCover().getDetail();
+                String detailUrl = cover.getDetail();
                 if (detailUrl != null) {
 
                     //缓存图片,详情中从缓存中读取
                     GlideApp.with(context)
                             .load(detailUrl)
-                            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .into(holder.iv_horizontal_item_view_tow);
 
                     //启动DetailActivity携带的图片URL地址

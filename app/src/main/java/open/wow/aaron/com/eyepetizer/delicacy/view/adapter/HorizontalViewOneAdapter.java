@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -150,8 +151,10 @@ public class HorizontalViewOneAdapter extends RecyclerView.ViewHolder {
                     //缓存图片,详情中从缓存中读取
                     GlideApp.with(context)
                             .load(detailUrl)
-                            .placeholder(R.drawable.ic_default)
+                            //.placeholder(R.drawable.ic_default)
                             //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                            //.skipMemoryCache(true)
+                            .diskCacheStrategy( DiskCacheStrategy.NONE)
                             .into(holder.iv_horizontal_item_view);
 
                     //启动DetailActivity携带的图片URL地址

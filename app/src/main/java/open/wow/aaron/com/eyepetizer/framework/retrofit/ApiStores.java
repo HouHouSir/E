@@ -26,7 +26,7 @@ public interface ApiStores {
      * 精选
      * @return
      */
-    @POST("tabs/selected")
+    @POST("tabs/selected?")
     Observable<DelicacyChoiceBean> getDelicacyChoice();
 
 

@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.List;
 
 import open.wow.aaron.com.eyepetizer.R;
@@ -49,7 +51,9 @@ public class FoundDetailAdapter extends RecyclerView.Adapter<FoundDetailAdapter.
             String imageUrl = data.getCover().getDetail();
             GlideApp.with(mContext)
                     .load(imageUrl)
-                    .placeholder(R.drawable.ic_default)
+                    //.placeholder(R.drawable.ic_default)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy( DiskCacheStrategy.NONE)
                     .into(holder.iv_item_view);
             //设置文字
             String title = data.getTitle();

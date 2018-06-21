@@ -19,7 +19,6 @@ import open.wow.aaron.com.eyepetizer.author.AuthorFragment;
 import open.wow.aaron.com.eyepetizer.delicacy.view.DelicacyChoiceFragment;
 import open.wow.aaron.com.eyepetizer.found.view.FoundFragment;
 import open.wow.aaron.com.eyepetizer.framework.base.BaseActivity;
-import open.wow.aaron.com.eyepetizer.framework.utils.NetUtils;
 import open.wow.aaron.com.eyepetizer.framework.view.adapter.OpenEyesViewPagerAdapter;
 import open.wow.aaron.com.eyepetizer.mine.MineFragment;
 
@@ -50,11 +49,16 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.e(TAG, "网络状况 " + NetUtils.isConnected(this));
         initView();
         initData();
-        long l = System.currentTimeMillis();
-        Log.e(TAG,"时间: "+ l );
+        //Log.e(TAG, "网络状况 " + NetUtils.isConnected(this));
+        //long l = System.currentTimeMillis();
+        //Log.e(TAG, "时间: " + l);
+
+        Runtime rt = Runtime.getRuntime();
+        long maxMemory = rt.maxMemory();
+        Log.e("maxMemory:", Long.toString(maxMemory / (1024 * 1024)));
+        //oppoR15 384M android:largeHeap="true" 申请更大内存以后为512M
     }
 
     private void initView() {
@@ -71,7 +75,7 @@ public class MainActivity extends BaseActivity {
 
 
         //adapter
-        mViewPager.setAdapter(new OpenEyesViewPagerAdapter(getSupportFragmentManager(),mFragmentList));
+        mViewPager.setAdapter(new OpenEyesViewPagerAdapter(getSupportFragmentManager(), mFragmentList));
 
         //mTabLayout.setupWithViewPager(mViewPager);
 
@@ -121,7 +125,7 @@ public class MainActivity extends BaseActivity {
     //设置Tab底部标题,给tab添加View 以满足上面是图片,下面是文字的需求.
     private void setTabLayoutItem() {
         for (int i = 0; i < titles.length; i++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.tab_item, null,false);
+            View view = LayoutInflater.from(this).inflate(R.layout.tab_item, null, false);
 
             TabLayout.Tab tab = mTabLayout.newTab();
             tab.setCustomView(view);
@@ -181,7 +185,7 @@ public class MainActivity extends BaseActivity {
             int currentItem = savedInstanceState.getInt("currentItem");
             //默认选中某项
             TabLayout.Tab tabAt = mTabLayout.getTabAt(currentItem);
-            if (tabAt!=null){
+            if (tabAt != null) {
                 tabAt.select();
             }
 //            mTabLayout.getTabAt(currentItem).select();

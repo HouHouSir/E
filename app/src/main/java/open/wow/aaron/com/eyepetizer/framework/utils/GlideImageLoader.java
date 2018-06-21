@@ -3,9 +3,9 @@ package open.wow.aaron.com.eyepetizer.framework.utils;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.youth.banner.loader.ImageLoader;
 
-import open.wow.aaron.com.eyepetizer.R;
 import open.wow.aaron.com.eyepetizer.framework.GlideApp;
 
 /**
@@ -31,7 +31,9 @@ public class GlideImageLoader extends ImageLoader {
         GlideApp.with(context)
                 .load(path)
                 //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .placeholder(R.drawable.ic_default)
+                //.placeholder(R.drawable.ic_default)
+                .skipMemoryCache(true)
+                .diskCacheStrategy( DiskCacheStrategy.NONE)
                 .into(imageView);
 
         //Picasso 加载图片简单用法

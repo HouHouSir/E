@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
@@ -23,6 +22,7 @@ import open.wow.aaron.com.eyepetizer.R;
 import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.delicacy.presenter.DelicacyP;
 import open.wow.aaron.com.eyepetizer.delicacy.view.adapter.AllRecyclerAdapter;
+import open.wow.aaron.com.eyepetizer.framework.GlideApp;
 import open.wow.aaron.com.eyepetizer.framework.base.BaseFragment;
 
 /**
@@ -30,7 +30,6 @@ import open.wow.aaron.com.eyepetizer.framework.base.BaseFragment;
  * 时间: 2017/7/20
  * 功能描述: 精选
  *
- * 运用RecyclerViewPool解决卡顿问题
  */
 
 public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
@@ -58,6 +57,7 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        refreshLayout.setEnableAutoLoadMore(true);//是否启用列表惯性滑动到底部时自动加载更多
         refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()));
         refreshLayout.setRefreshFooter(new ClassicsFooter(getActivity()));
 
@@ -132,10 +132,24 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
 
     }
 
+    /**
+     * 刷新2种方式
+     * (1) 有点是作者提供,缺点是第一次没有数据不提示,再次刷新才提示
+     * 下拉刷新的时候  refreshLayout.setNoMoreData(false);//恢复上拉状态
+     * 上拉加载更多的时候  refreshLayout.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
+     * (2)自创修改文字
+     * ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.footer_finish_no_more);//"没有更多数据";
+     * ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.footer_finish);//"加载完成";
+     *
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
         mP.stopNet();
+        GlideApp.get(getActivity()).clearMemory();
+
+//        RefWatcher refWatcher = OpenEyesApplication.getRefWatcher(getActivity());
+//        refWatcher.watch(this);
     }
 
     /**
@@ -202,23 +216,5 @@ public class DelicacyChoiceFragment extends BaseFragment implements IDelicacyV {
             //加载更多数据-->回调loadMore()方法
             mP.getDataFromNetLoadMore(data, num, pager);
         }
-    }
-
-
-    /**
-     * 刷新2种方式
-     * (1) 有点是作者提供,缺点是第一次没有数据不提示,再次刷新才提示
-     * 下拉刷新的时候  refreshLayout.setNoMoreData(false);//恢复上拉状态
-     * 上拉加载更多的时候  refreshLayout.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
-     * (2)自创修改文字
-     * ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.footer_finish_no_more);//"没有更多数据";
-     * ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.footer_finish);//"加载完成";
-     *
-     */
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Glide.get(getActivity()).clearMemory();
     }
 }
