@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import open.wow.aaron.com.eyepetizer.R;
 import open.wow.aaron.com.eyepetizer.found.model.bean.FoundBean;
 import open.wow.aaron.com.eyepetizer.framework.GlideApp;
+import open.wow.aaron.com.eyepetizer.framework.utils.DensityUtils;
 
 /**
  * 作者：哇牛Aaron
@@ -45,12 +46,13 @@ public class FoundAdapter extends RecyclerView.Adapter<FoundAdapter.ViewHolder> 
                 .load(mList.get(position).getBgPicture())
                 //.placeholder(R.drawable.ic_default)
                 //.skipMemoryCache(true)
-                .diskCacheStrategy( DiskCacheStrategy.NONE)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .override(DensityUtils.dip2px(mContext, 40), DensityUtils.dip2px(mContext, 40))
                 .into(holder.mIvFoundItem);
         //名称
         holder.mTvFoundType.setText("#" + mList.get(position).getName());
 
-        if (mOnItemClickListener!=null){
+        if (mOnItemClickListener != null) {
             //图片点击事件
             holder.mIvFoundItem.setOnClickListener(new View.OnClickListener() {
                 @Override

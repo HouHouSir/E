@@ -2,13 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:background="@color/vertical_bg_color"
              android:layout_width="match_parent"
-             android:layout_height="208dp">
+             android:layout_height="300dp">
 
     <ImageView
         android:transitionName="@string/share_animation"
         android:id="@+id/iv_item_view"
         android:layout_width="match_parent"
-        android:layout_height="208dp"/>
+        android:layout_height="match_parent"/>
     <!--android:background="@drawable/welcome_bg"-->
     <!--android:background="@color/color_black"-->
     <!--android:background="@drawable/welcome_bg"-->

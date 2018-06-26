@@ -105,7 +105,7 @@ public class FoundDetailActivity extends BaseActivity implements IFoundDetailV {
         GlideApp.with(this)
                 .load(headerImage)
                 //.placeholder(R.drawable.ic_default)
-                .skipMemoryCache(true)
+                //.skipMemoryCache(true)
                 .diskCacheStrategy( DiskCacheStrategy.NONE)
                 .into(mIvFoundDetailTitle);
     }

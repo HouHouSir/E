@@ -67,11 +67,11 @@ public class BannerAdapter extends RecyclerView.ViewHolder {
             @Override
             public void OnBannerClick(int position) {
                 DelicacyChoiceBean.ItemListBean bean = itemList.get(position);
-                String detailUrl = bean.getData().getCover().getDetail();
+                String imageUrl = bean.getData().getCover().getHomepage();
 
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("itemListWBean",new Gson().toJson(bean));
-                intent.putExtra("imageUrl", detailUrl);
+                intent.putExtra("imageUrl", imageUrl);
                 context.startActivity(intent);
             }
         });

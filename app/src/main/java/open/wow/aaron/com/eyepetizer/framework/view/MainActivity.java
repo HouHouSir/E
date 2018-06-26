@@ -19,6 +19,7 @@ import open.wow.aaron.com.eyepetizer.author.AuthorFragment;
 import open.wow.aaron.com.eyepetizer.delicacy.view.DelicacyChoiceFragment;
 import open.wow.aaron.com.eyepetizer.found.view.FoundFragment;
 import open.wow.aaron.com.eyepetizer.framework.base.BaseActivity;
+import open.wow.aaron.com.eyepetizer.framework.dimens.generator.DimenGenerator;
 import open.wow.aaron.com.eyepetizer.framework.view.adapter.OpenEyesViewPagerAdapter;
 import open.wow.aaron.com.eyepetizer.mine.MineFragment;
 
@@ -59,6 +60,12 @@ public class MainActivity extends BaseActivity {
         long maxMemory = rt.maxMemory();
         Log.e("maxMemory:", Long.toString(maxMemory / (1024 * 1024)));
         //oppoR15 384M android:largeHeap="true" 申请更大内存以后为512M
+
+//        mTabLayout.getTabAt(1).select();
+
+
+        DimenGenerator dimenGenerator = new DimenGenerator();
+
     }
 
     private void initView() {

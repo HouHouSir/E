@@ -16,7 +16,6 @@ import java.util.List;
 import open.wow.aaron.com.eyepetizer.R;
 import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.framework.GlideApp;
-import open.wow.aaron.com.eyepetizer.framework.ui.GlideCircleTransform;
 import open.wow.aaron.com.eyepetizer.framework.utils.DensityUtils;
 import open.wow.aaron.com.eyepetizer.framework.utils.TimeUtils;
 
@@ -52,7 +51,7 @@ public class FoundDetailAdapter extends RecyclerView.Adapter<FoundDetailAdapter.
             GlideApp.with(mContext)
                     .load(imageUrl)
                     //.placeholder(R.drawable.ic_default)
-                    .skipMemoryCache(true)
+                    //.skipMemoryCache(true)
                     .diskCacheStrategy( DiskCacheStrategy.NONE)
                     .into(holder.iv_item_view);
             //设置文字
@@ -95,7 +94,8 @@ public class FoundDetailAdapter extends RecyclerView.Adapter<FoundDetailAdapter.
                 GlideApp.with(mContext)
                         .load(homepageUrl)
                         .centerCrop()
-                        .transform(new GlideCircleTransform())
+                        //.transform(new GlideCircleTransform())
+                        .circleCrop()
                         .override(DensityUtils.dip2px(mContext, 40), DensityUtils.dip2px(mContext, 40))
                         .into(holder.iv_detail_homepage);
             }

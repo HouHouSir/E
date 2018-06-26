@@ -34,6 +34,7 @@ public class GlideImageLoader extends ImageLoader {
                 //.placeholder(R.drawable.ic_default)
                 .skipMemoryCache(true)
                 .diskCacheStrategy( DiskCacheStrategy.NONE)
+                //.override(DensityUtils.dip2px(context, 40), DensityUtils.dip2px(context, 40))
                 .into(imageView);
 
         //Picasso 加载图片简单用法

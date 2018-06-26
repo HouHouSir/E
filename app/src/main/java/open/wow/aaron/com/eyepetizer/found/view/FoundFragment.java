@@ -4,7 +4,6 @@ package open.wow.aaron.com.eyepetizer.found.view;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,7 +23,7 @@ import open.wow.aaron.com.eyepetizer.framework.base.BaseFragment;
 import open.wow.aaron.com.eyepetizer.framework.ui.GridDividerItemDecoration;
 
 /**
- * A simple {@link Fragment} subclass.
+ * 发现Fragment
  */
 public class FoundFragment extends BaseFragment implements IFoundV {
     private static final String TAG = FoundFragment.class.getSimpleName();

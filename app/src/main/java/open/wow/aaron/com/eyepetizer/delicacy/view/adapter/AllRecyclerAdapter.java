@@ -157,7 +157,7 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
 //            Log.e(TAG, "isRecyclable = " + isRecyclable);
 
 
-            String imageUrl = data.getCover().getDetail();
+            String imageUrl = data.getCover().getHomepage();
             //加载图片
             if (imageUrl != null) {
                 GlideApp.with(mContext)
@@ -165,6 +165,8 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
                         //.placeholder(R.drawable.ic_default)
                         //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                         //.skipMemoryCache(true)
+//                        .override(DensityUtils.dip2px(mContext, 80), DensityUtils.dip2px(mContext, 80))
+                        .centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .into(((VerticalViewHolder) holder).iv_item_view);
 

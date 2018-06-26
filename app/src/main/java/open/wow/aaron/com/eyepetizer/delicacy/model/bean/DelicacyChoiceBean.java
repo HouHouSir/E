@@ -1,7 +1,6 @@
 package open.wow.aaron.com.eyepetizer.delicacy.model.bean;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ import java.util.List;
  * 功能描述: 精选网络获取实体类
  */
 
-public class DelicacyChoiceBean implements Parcelable {
+public class DelicacyChoiceBean {
     private int count;
     private int total;
     private String nextPageUrl;
@@ -34,35 +33,8 @@ public class DelicacyChoiceBean implements Parcelable {
         lastStartId = in.readInt();
     }
 
-    public static final Creator<DelicacyChoiceBean> CREATOR = new Creator<DelicacyChoiceBean>() {
-        @Override
-        public DelicacyChoiceBean createFromParcel(Parcel in) {
-            return new DelicacyChoiceBean(in);
-        }
 
-        @Override
-        public DelicacyChoiceBean[] newArray(int size) {
-            return new DelicacyChoiceBean[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(count);
-        dest.writeInt(total);
-        dest.writeString(nextPageUrl);
-        dest.writeLong(date);
-        dest.writeLong(nextPublishTime);
-        dest.writeInt(refreshCount);
-        dest.writeInt(lastStartId);
-    }
-
-    public static class ItemListBean implements Parcelable {
+    public static class ItemListBean {
         private DataBean data;
         private String type;
         private String tag;
@@ -72,29 +44,6 @@ public class DelicacyChoiceBean implements Parcelable {
             type = in.readString();
             tag = in.readString();
         }
-
-        public static final Creator<ItemListBean> CREATOR = new Creator<ItemListBean>() {
-            @Override
-            public ItemListBean createFromParcel(Parcel in) {
-                return new ItemListBean(in);
-            }
-
-            @Override
-            public ItemListBean[] newArray(int size) {
-                return new ItemListBean[size];
-            }
-        };
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-
-        }
-
 
         public class DataBean {
             /**
