@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import open.wow.aaron.com.eyepetizer.R;
 import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 import open.wow.aaron.com.eyepetizer.detail.DetailActivity;
 import open.wow.aaron.com.eyepetizer.framework.GlideApp;
+import open.wow.aaron.com.eyepetizer.framework.utils.DensityUtils;
 import open.wow.aaron.com.eyepetizer.framework.utils.TimeUtils;
 
 /**
@@ -32,13 +34,13 @@ import open.wow.aaron.com.eyepetizer.framework.utils.TimeUtils;
  * 功能描述:
  */
 
-public class HorizontalViewOneAdapter extends RecyclerView.ViewHolder {
-    private static final String TAG = HorizontalViewOneAdapter.class.getSimpleName();
+public class HorizontalViewAdapter extends RecyclerView.ViewHolder {
+    private static final String TAG = HorizontalViewAdapter.class.getSimpleName();
     //private ImageView iv_item_horizontal_title;//单个web图片
     private RecyclerView horizontal_recycler_view;
     private Context context;
 
-    public HorizontalViewOneAdapter(View itemView) {
+    public HorizontalViewAdapter(View itemView) {
         super(itemView);
         //iv_item_horizontal_title = (ImageView) itemView.findViewById(iv_item_horizontal_title);
         horizontal_recycler_view = (RecyclerView) itemView.findViewById(R.id.horizontal_recycler_view);
@@ -146,7 +148,7 @@ public class HorizontalViewOneAdapter extends RecyclerView.ViewHolder {
                 //图片
                 //String detailUrl = data.getCover().getDetail();
                 String detailUrl = data.getCover().getDetail();
-                //Log.e("TAG", "detailUrl == " + detailUrl);
+                Log.e("TAG", "detailUrl == " + detailUrl);
                 if (detailUrl != null) {
                     //缓存图片,详情中从缓存中读取
                     GlideApp.with(context)
@@ -154,7 +156,9 @@ public class HorizontalViewOneAdapter extends RecyclerView.ViewHolder {
                             //.placeholder(R.drawable.ic_default)
                             //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                             //.skipMemoryCache(true)
-                            .diskCacheStrategy( DiskCacheStrategy.NONE)
+                            .centerCrop()
+                            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                            .override(DensityUtils.dip2px(context, 280), DensityUtils.dip2px(context, 160))
                             .into(holder.iv_horizontal_item_view);
 
                     //启动DetailActivity携带的图片URL地址

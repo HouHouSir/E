@@ -14,8 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
@@ -226,7 +226,7 @@ public class DetailActivity extends BaseActivity {
 
 
         } else {
-            Log.e(TAG, "data==null");
+            Toast.makeText(this, "数据出错啦!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -252,15 +252,16 @@ public class DetailActivity extends BaseActivity {
          */
         //mIvDetailTitle.setScaleType(ImageView.ScaleType.FIT_START);
 
+        Log.e(TAG,"imageUrl= " + imageUrl);
         //仅从缓存中读取
         GlideApp.with(DetailActivity.this)
                 .load(imageUrl)
-//                .onlyRetrieveFromCache(true)
-                .dontTransform()
+                .onlyRetrieveFromCache(true)
+//                .dontTransform()
 //                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
 //                .override(windWidth, DensityUtils.dip2px(DetailActivity.this, 380))
-                .override(windWidth, height / 2 + DensityUtils.dip2px(DetailActivity.this, 30))
-//                .centerCrop()
+//                .override(windWidth, height / 2 + DensityUtils.dip2px(DetailActivity.this, 30))
+                .centerCrop()
                 .into(mIvDetailTitle);
     }
 
@@ -310,7 +311,7 @@ public class DetailActivity extends BaseActivity {
             animation = null;
         }
 
-        Glide.get(this).clearMemory();
+        GlideApp.get(this).clearMemory();
         subscribe.unsubscribe();
     }
 }

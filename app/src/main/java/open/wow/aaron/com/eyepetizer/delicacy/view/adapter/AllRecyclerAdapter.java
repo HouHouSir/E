@@ -74,7 +74,7 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case HORIZONTAL_VIEW_ONE:
-                return new HorizontalViewOneAdapter(
+                return new HorizontalViewAdapter(
                         LayoutInflater.from(mContext)
                                 .inflate(R.layout.item_horizontal_list_one, parent, false));
 
@@ -111,9 +111,9 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-        if (holder instanceof HorizontalViewOneAdapter) {
+        if (holder instanceof HorizontalViewAdapter) {
             //String type = itemList.get(position).getType();
-            ((HorizontalViewOneAdapter) holder).setData(mItemList, mContext, position, mPool);
+            ((HorizontalViewAdapter) holder).setData(mItemList, mContext, position, mPool);
         }
 
 
@@ -141,78 +141,8 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
             }
         }*/
         if (holder instanceof VerticalViewHolder) {
-            //共享元素的Intent
-            final Intent intent = new Intent(mContext, DetailActivity.class);
-            DelicacyChoiceBean.ItemListBean itemListBean = mItemList.get(position);
-            if (itemListBean == null) return;
-            intent.putExtra("itemListWBean", new Gson().toJson(itemListBean));
+            disposeVerticalViewHolder((VerticalViewHolder) holder, position);
 
-            final DelicacyChoiceBean.ItemListBean.DataBean data = itemListBean.getData();
-            if (data == null) return;
-
-            DelicacyChoiceBean.ItemListBean.DataBean.CoverBean cover = data.getCover();
-            if (cover == null) return;
-
-//            boolean isRecyclable = holder.isRecyclable();
-//            Log.e(TAG, "isRecyclable = " + isRecyclable);
-
-
-            String imageUrl = data.getCover().getHomepage();
-            //加载图片
-            if (imageUrl != null) {
-                GlideApp.with(mContext)
-                        .load(imageUrl)
-                        //.placeholder(R.drawable.ic_default)
-                        //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                        //.skipMemoryCache(true)
-//                        .override(DensityUtils.dip2px(mContext, 80), DensityUtils.dip2px(mContext, 80))
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(((VerticalViewHolder) holder).iv_item_view);
-
-                //启动DetailActivity携带的图片URL地址
-                intent.putExtra("imageUrl", imageUrl);
-                //intent.putExtra("imageUrl", itemListWBean.getData().getCover().getDetail());
-
-
-                //Log.e("TAG", "获取的URL = " + imageUrl);
-            }
-
-            //设置标题
-            String title = data.getTitle();
-            if (title != null) {
-                ((VerticalViewHolder) holder).tv_item_title.setText(title);
-            }
-
-            //设置类型和时长
-            String category = data.getCategory();
-            String duration = TimeUtils.duration(data.getDuration());
-            if (category != null && duration != null) {
-                ((VerticalViewHolder) holder).tv_item_category.setText("#" + category);
-                ((VerticalViewHolder) holder).tv_item_duration.setText(" " + "/ " + duration);
-            }
-
-            //设置作者
-            String author = data.getAuthor().getName();
-            if (author != null) {
-                ((VerticalViewHolder) holder).tv_item_author.setText(author);
-            }
-
-
-            // 这里指定了共享的视图元素
-            ((VerticalViewHolder) holder).iv_item_view.setOnClickListener(new View.OnClickListener() {
-                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                @Override
-                public void onClick(View v) {
-                    ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            (Activity) mContext, v,
-                            mContext.getString(R.string.share_animation)
-                    );
-                    mContext.startActivity(intent, optionsCompat.toBundle());
-                    Log.e(TAG, "position = " + position);
-                    Log.e(TAG, "data.getTitle()= " + data.getTitle());
-                }
-            });
         }
     }
 
@@ -266,7 +196,7 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
         }
 
         //第二页数据集合,没有图片
-        if ("squareCardCollection".equals(type)){
+        if ("squareCardCollection".equals(type)) {
             return REPEAT_BANNER;
         }
 
@@ -278,8 +208,90 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
         return VERTICAL_VIEW;
     }
 
+
     /**
-     * 竖直方向
+     * 处理竖向数据
+     *
+     * @param holder
+     * @param position
+     */
+    private void disposeVerticalViewHolder(VerticalViewHolder holder, final int position) {
+        //共享元素的Intent
+        final Intent intent = new Intent(mContext, DetailActivity.class);
+        DelicacyChoiceBean.ItemListBean itemListBean = mItemList.get(position);
+        if (itemListBean == null) return;
+        intent.putExtra("itemListWBean", new Gson().toJson(itemListBean));
+
+        final DelicacyChoiceBean.ItemListBean.DataBean data = itemListBean.getData();
+        if (data == null) return;
+
+        DelicacyChoiceBean.ItemListBean.DataBean.CoverBean cover = data.getCover();
+        if (cover == null) return;
+
+//            boolean isRecyclable = holder.isRecyclable();
+//            Log.e(TAG, "isRecyclable = " + isRecyclable);
+
+
+        String imageUrl = data.getCover().getHomepage();
+        //加载图片
+        if (imageUrl != null) {
+            GlideApp.with(mContext)
+                    .load(imageUrl)
+                    //.placeholder(R.drawable.ic_default)
+                    //.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    //.skipMemoryCache(true)
+//                        .override(DensityUtils.dip2px(mContext, 80), DensityUtils.dip2px(mContext, 80))
+                    .centerCrop()
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                    .into(holder.iv_item_view);
+
+            //启动DetailActivity携带的图片URL地址
+            intent.putExtra("imageUrl", imageUrl);
+            //intent.putExtra("imageUrl", itemListWBean.getData().getCover().getDetail());
+
+
+            //Log.e("TAG", "获取的URL = " + imageUrl);
+        }
+
+        //设置标题
+        String title = data.getTitle();
+        if (title != null) {
+            holder.tv_item_title.setText(title);
+        }
+
+        //设置类型和时长
+        String category = data.getCategory();
+        String duration = TimeUtils.duration(data.getDuration());
+        if (category != null && duration != null) {
+            holder.tv_item_category.setText("#" + category);
+            holder.tv_item_duration.setText(" " + "/ " + duration);
+        }
+
+        //设置作者
+        String author = data.getAuthor().getName();
+        if (author != null) {
+            holder.tv_item_author.setText(author);
+        }
+
+
+        // 这里指定了共享的视图元素
+        holder.iv_item_view.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(View v) {
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        (Activity) mContext, v,
+                        mContext.getString(R.string.share_animation)
+                );
+                mContext.startActivity(intent, optionsCompat.toBundle());
+                Log.e(TAG, "position = " + position);
+                Log.e(TAG, "data.getTitle()= " + data.getTitle());
+            }
+        });
+    }
+
+    /**
+     * 竖直方向ViewHolder
      */
     class VerticalViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_item_view;//图片
@@ -288,7 +300,7 @@ public class AllRecyclerAdapter extends RecyclerView.Adapter {
         TextView tv_item_duration;//时长
         TextView tv_item_author;//作者
 
-        public VerticalViewHolder(View itemView) {
+        VerticalViewHolder(View itemView) {
             super(itemView);
 
             iv_item_view = (ImageView) itemView.findViewById(R.id.iv_item_view);
