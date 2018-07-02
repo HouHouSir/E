@@ -54,6 +54,7 @@ public class ApiClient {
                             .removeHeader("Pragma")
                             .build();
                 }
+
                 return chain.proceed(request);
             }
         };

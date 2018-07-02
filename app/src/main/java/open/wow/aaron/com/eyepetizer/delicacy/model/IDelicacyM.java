@@ -11,7 +11,7 @@ import open.wow.aaron.com.eyepetizer.delicacy.model.bean.DelicacyChoiceBean;
 
 public interface IDelicacyM {
     void getDelicacyDataFromNet(CallBack callBack);
-    void getDataFromNetRefresh(CallBack callBack);
+//    void getDataFromNetRefresh(CallBack callBack);
     void getDataFromNetLoadMore(CallBack callBack,String date,String num,String pager);
     void stopNet();
 

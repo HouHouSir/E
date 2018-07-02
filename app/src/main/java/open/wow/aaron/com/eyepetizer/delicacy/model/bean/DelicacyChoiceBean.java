@@ -22,6 +22,7 @@ public class DelicacyChoiceBean {
     private int refreshCount;
     private int lastStartId;
     private List<ItemListBean> itemList;
+    private List<HeaderBean> mHeaderBeanList;
 
     protected DelicacyChoiceBean(Parcel in) {
         count = in.readInt();
@@ -33,12 +34,128 @@ public class DelicacyChoiceBean {
         lastStartId = in.readInt();
     }
 
+    public class HeaderBean {
+        private String actionUrl;
+        private String cover;
+        private String font;
+        private int id;
+        private String icon;
+        private LabelBean label;
+        private String title;
+        private String description;
+        private List<LabelListBean> labelList;
+
+        public class LabelBean {
+            private String card;
+            private String text;
+
+            public String getCard() {
+                return card;
+            }
+
+            public void setCard(String card) {
+                this.card = card;
+            }
+
+            public String getText() {
+                return text;
+            }
+
+            public void setText(String text) {
+                this.text = text;
+            }
+        }
+
+        public class LabelListBean {
+            private String text;
+
+            public String getText() {
+                return text;
+            }
+
+            public void setText(String text) {
+                this.text = text;
+            }
+        }
+
+
+        public String getIcon() {
+            return icon;
+        }
+
+        public void setIcon(String icon) {
+            this.icon = icon;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public String getActionUrl() {
+            return actionUrl;
+        }
+
+        public void setActionUrl(String actionUrl) {
+            this.actionUrl = actionUrl;
+        }
+
+        public String getCover() {
+            return cover;
+        }
+
+        public void setCover(String cover) {
+            this.cover = cover;
+        }
+
+        public String getFont() {
+            return font;
+        }
+
+        public void setFont(String font) {
+            this.font = font;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public LabelBean getLabel() {
+            return label;
+        }
+
+        public void setLabel(LabelBean label) {
+            this.label = label;
+        }
+
+        public List<LabelListBean> getLabelList() {
+            return labelList;
+        }
+
+        public void setLabelList(List<LabelListBean> labelList) {
+            this.labelList = labelList;
+        }
+    }
 
     public static class ItemListBean {
         private DataBean data;
         private String type;
         private String tag;
-        private DataBean.HeaderBean header;
 
         protected ItemListBean(Parcel in) {
             type = in.readString();
@@ -100,95 +217,7 @@ public class DelicacyChoiceBean {
             private List<?> labelList;
             private List<?> subtitles;
 
-            public class HeaderBean {
-                private String actionUrl;
-                private String cover;
-                private String font;
-                private int id;
-                private LabelBean label;
-                private List<LabelListBean> labelList;
 
-                class LabelBean {
-                    private String card;
-                    private String text;
-
-                    public String getCard() {
-                        return card;
-                    }
-
-                    public void setCard(String card) {
-                        this.card = card;
-                    }
-
-                    public String getText() {
-                        return text;
-                    }
-
-                    public void setText(String text) {
-                        this.text = text;
-                    }
-                }
-
-                class LabelListBean {
-                    private String text;
-
-                    public String getText() {
-                        return text;
-                    }
-
-                    public void setText(String text) {
-                        this.text = text;
-                    }
-                }
-
-                public String getActionUrl() {
-                    return actionUrl;
-                }
-
-                public void setActionUrl(String actionUrl) {
-                    this.actionUrl = actionUrl;
-                }
-
-                public String getCover() {
-                    return cover;
-                }
-
-                public void setCover(String cover) {
-                    this.cover = cover;
-                }
-
-                public String getFont() {
-                    return font;
-                }
-
-                public void setFont(String font) {
-                    this.font = font;
-                }
-
-                public int getId() {
-                    return id;
-                }
-
-                public void setId(int id) {
-                    this.id = id;
-                }
-
-                public LabelBean getLabel() {
-                    return label;
-                }
-
-                public void setLabel(LabelBean label) {
-                    this.label = label;
-                }
-
-                public List<LabelListBean> getLabelList() {
-                    return labelList;
-                }
-
-                public void setLabelList(List<LabelListBean> labelList) {
-                    this.labelList = labelList;
-                }
-            }
 
             public class AuthorBean {
                 private int approvedNotReadyVideoCount;
@@ -1045,13 +1074,6 @@ public class DelicacyChoiceBean {
             this.tag = tag;
         }
 
-        public DataBean.HeaderBean getHeader() {
-            return header;
-        }
-
-        public void setHeader(DataBean.HeaderBean header) {
-            this.header = header;
-        }
 
         @Override
         public String toString() {
@@ -1059,7 +1081,6 @@ public class DelicacyChoiceBean {
                     "data=" + data +
                     ", type='" + type + '\'' +
                     ", tag='" + tag + '\'' +
-                    ", header=" + header +
                     '}';
         }
     }
@@ -1142,5 +1163,29 @@ public class DelicacyChoiceBean {
 
     public void setItemList(List<ItemListBean> itemList) {
         this.itemList = itemList;
+    }
+
+    public List<HeaderBean> getHeaderBeanList() {
+        return mHeaderBeanList;
+    }
+
+    public void setHeaderBeanList(List<HeaderBean> headerBeanList) {
+        mHeaderBeanList = headerBeanList;
+    }
+
+    @Override
+    public String toString() {
+        return "DelicacyChoiceBean{" +
+                "count=" + count +
+                ", total=" + total +
+                ", nextPageUrl='" + nextPageUrl + '\'' +
+                ", date=" + date +
+                ", nextPublishTime=" + nextPublishTime +
+                ", dialog=" + dialog +
+                ", topIssue=" + topIssue +
+                ", refreshCount=" + refreshCount +
+                ", lastStartId=" + lastStartId +
+                ", itemList=" + itemList +
+                '}';
     }
 }

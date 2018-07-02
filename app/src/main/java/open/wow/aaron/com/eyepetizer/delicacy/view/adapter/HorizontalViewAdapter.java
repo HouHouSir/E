@@ -70,7 +70,7 @@ public class HorizontalViewAdapter extends RecyclerView.ViewHolder {
         //Log.e(TAG,"position = " + position);
         DelicacyChoiceBean.ItemListBean.DataBean data = itemListWBeen.get(position).getData();
         //Log.e(TAG,data.toString());
-        DelicacyChoiceBean.ItemListBean.DataBean.HeaderBean headerBean = data.getHeaderBean();
+//        DelicacyChoiceBean.ItemListBean.DataBean.HeaderBean headerBean = data.getHeaderBean();
         //Log.e(TAG,itemListWBeen.toString());
 
 //        if (itemListBean != null) {

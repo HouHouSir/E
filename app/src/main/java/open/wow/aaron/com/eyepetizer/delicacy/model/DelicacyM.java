@@ -44,31 +44,31 @@ public class DelicacyM implements IDelicacyM {
                 });
     }
 
-    @Override
-    public void getDataFromNetRefresh(final CallBack callBack) {
-        subscribe = ApiClient.createRetrofit()
-                .getDelicacyChoice()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<DelicacyChoiceBean>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onNext(DelicacyChoiceBean delicacyChoiceBean) {
-//                        String nextPageUrl = delicacyChoiceBean.getNextPageUrl();
-//                        Log.e("TAG","nextPageUrl: " + nextPageUrl);
-                        callBack.onSuccess(delicacyChoiceBean);
-                    }
-                });
-    }
+//    @Override
+//    public void getDataFromNetRefresh(final CallBack callBack) {
+//        subscribe = ApiClient.createRetrofit()
+//                .getDelicacyChoice()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<DelicacyChoiceBean>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    @Override
+//                    public void onNext(DelicacyChoiceBean delicacyChoiceBean) {
+////                        String nextPageUrl = delicacyChoiceBean.getNextPageUrl();
+////                        Log.e("TAG","nextPageUrl: " + nextPageUrl);
+//                        callBack.onSuccess(delicacyChoiceBean);
+//                    }
+//                });
+//    }
 
     @Override
     public void getDataFromNetLoadMore(final CallBack callBack,String date,String num,String pager) {

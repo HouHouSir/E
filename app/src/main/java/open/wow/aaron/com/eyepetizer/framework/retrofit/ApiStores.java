@@ -10,6 +10,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -20,10 +21,13 @@ import rx.Observable;
  */
 
 public interface ApiStores {
+    public final String FAIL_MESSAGE = "没有更多数据";
+
     //http://baobab.kaiyanapp.com/api/v4/tabs/selected?date=1527555600000&num=2&page=2
 
     /**
      * 精选
+     *
      * @return
      */
     @POST("tabs/selected?")
@@ -39,6 +43,7 @@ public interface ApiStores {
 
     /**
      * 精选加载更多
+     *
      * @param date
      * @param num
      * @param page
@@ -81,4 +86,14 @@ public interface ApiStores {
      */
     @GET("categories/videoList?")
     Observable<DelicacyChoiceBean> getFoundDetail(@Query("id") String id);
+
+    /**
+     * 作者
+     *
+     * @param url 动态设置url
+     * @return
+     * http://baobab.kaiyanapp.com/api/v4/pgcs/all
+     */
+    @GET
+    Observable<DelicacyChoiceBean> getAuthor(@Url String url);
 }
